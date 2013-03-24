@@ -3,6 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded_1" Unloaded="Window_Unloaded_1">
     <Grid>
-        <Image Width="320" Height="200" Source="{Binding Screen}" />
+        <Image Width="320" Height="200" Source="{Binding ScreenBitmap}" />
     </Grid>
 </Window>

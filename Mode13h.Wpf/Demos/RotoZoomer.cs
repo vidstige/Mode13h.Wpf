@@ -43,11 +43,11 @@ namespace Mode13h.Wpf.Demos
                 }
                 _grfx.vretrace();
 
-                _a = Math.Cos(t/200.0) * 2 * Math.PI;
-                _s = Math.Sin(_a) + 1.2;
+                _a = Math.Cos(t/100.0) * Math.Sin(t/130.0) * 2 * Math.PI;
+                _s = Math.Sin(t/20.0) / 2.0 + 1.4;
                 //_s = 1;
-                _ox = Math.Cos(t/50.0) * _width;
-                _oy = Math.Sin(t/50.0) * _height;
+                _ox = Math.Cos(t/20.0) * 320;
+                _oy = Math.Sin(t/20.0) * 200;
 
                 t++;
             }

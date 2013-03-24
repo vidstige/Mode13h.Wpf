@@ -12,6 +12,8 @@ namespace Mode13h.Wpf.Demos
         private readonly byte[] _img;
         private double _a = 0;
         private double _s = 1;
+        private double _ox = 0;
+        private double _oy = 0;
 
         public RotoZoomer(IGrfx grfx)
         {
@@ -33,10 +35,8 @@ namespace Mode13h.Wpf.Demos
                 {
                     for (int x = 0; x < 320; x++)
                     {
-                        int px = Clamp(Math.Cos(_a) * x * _s - Math.Sin(_a) * y * _s, 160);
-                        int py = Clamp(Math.Sin(_a) * x * _s + Math.Cos(_a) * y * _s, 100);
-                        //int px = (int)(Math.Cos(_a) * x - Math.Sin(_a) * y);
-                        //int py = (int)(Math.Sin(_a) * x + Math.Cos(_a) * y);
+                        int px = Clamp(Math.Cos(_a) * (x-_ox) * _s - Math.Sin(_a) * (y-_oy) * _s, 160);
+                        int py = Clamp(Math.Sin(_a) * (x-_ox) * _s + Math.Cos(_a) * (y-_oy) * _s, 100);
                         
                         if (px >= 0 && px < 160 && py >= 0 && py < 100)
                         {
@@ -51,7 +51,10 @@ namespace Mode13h.Wpf.Demos
                 _grfx.vretrace();
 
                 _a += 0.03;
-                _s = Math.Sin(_a) + 1.2;
+                //_s = Math.Sin(_a) + 1.2;
+                _s = 1;
+                _ox = Math.Cos(_a) * 160;
+                _oy = Math.Sin(_a) * 100;
             }
         }
 

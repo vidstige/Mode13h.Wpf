@@ -10,6 +10,8 @@ namespace Mode13h.Wpf
     {
         byte[] Screen { get; }
         void vretrace();
+        
+        byte[] Load(string path, out int width, out int height, out int stride);
 
         bool Done { get; }
     }

@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -40,6 +42,20 @@ namespace Mode13h.Wpf
         {
             Done = true;
             _verticalRetrace.Set();
+        }
+
+        public byte[] Load(string path, out int width, out int height, out int stride)
+        {
+            var source = new BitmapImage(new Uri("pack://application:,,,/" + path));
+            width = source.PixelWidth;
+            height = source.PixelHeight;
+
+            stride = 500;
+            var bytes = new byte[stride * height];
+            source.CopyPixels(bytes, stride, 0);
+
+            
+            return bytes;
         }
     }
 }

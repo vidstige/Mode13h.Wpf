@@ -15,19 +15,19 @@ namespace Mode13h.Wpf.Demos
         private double _ox = 0;
         private double _oy = 0;
 
+        private readonly int _width;
+        private readonly int _height;
+        private readonly int _stride;
+
         public RotoZoomer(IGrfx grfx)
         {
             _grfx = grfx;
-            _img = new byte[160 * 100];
-            Random r = new Random();
-            for (int i = 0; i < 160 * 100; i++)
-            {
-                _img[i] = (byte)r.Next();
-            }
+            _img = _grfx.Load("Demos/rebtel.png", out _width, out _height, out _stride);
         }
 
         internal void Run()
         {
+            int t = 0;
             while (!_grfx.Done)
             {
                 int c = 0;
@@ -35,26 +35,21 @@ namespace Mode13h.Wpf.Demos
                 {
                     for (int x = 0; x < 320; x++)
                     {
-                        int px = Clamp(Math.Cos(_a) * (x-_ox) * _s - Math.Sin(_a) * (y-_oy) * _s, 160);
-                        int py = Clamp(Math.Sin(_a) * (x-_ox) * _s + Math.Cos(_a) * (y-_oy) * _s, 100);
+                        int px = Clamp(Math.Cos(_a) * (x-_ox) * _s - Math.Sin(_a) * (y-_oy) * _s, _width);
+                        int py = Clamp(Math.Sin(_a) * (x-_ox) * _s + Math.Cos(_a) * (y-_oy) * _s, _height);
                         
-                        if (px >= 0 && px < 160 && py >= 0 && py < 100)
-                        {
-                            _grfx.Screen[c++] = _img[px + py * 160];
-                        }
-                        else
-                        {
-                            _grfx.Screen[c++] = 128;
-                        }
+                        _grfx.Screen[c++] = _img[px + py * _stride];
                     }
                 }
                 _grfx.vretrace();
 
-                _a += 0.03;
-                //_s = Math.Sin(_a) + 1.2;
-                _s = 1;
-                _ox = Math.Cos(_a) * 160;
-                _oy = Math.Sin(_a) * 100;
+                _a = Math.Cos(t/200.0) * 2 * Math.PI;
+                _s = Math.Sin(_a) + 1.2;
+                //_s = 1;
+                _ox = Math.Cos(t/50.0) * _width;
+                _oy = Math.Sin(t/50.0) * _height;
+
+                t++;
             }
         }
 

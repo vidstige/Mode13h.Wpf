@@ -10,5 +10,7 @@ namespace Mode13h.Wpf
     {
         byte[] Screen { get; }
         void vretrace();
+
+        bool Done { get; }
     }
 }

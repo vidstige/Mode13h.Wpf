@@ -33,5 +33,13 @@ namespace Mode13h.Wpf
         {
             _verticalRetrace.WaitOne();
         }
+
+        public bool Done { get; private set; }
+
+        public void Quit()
+        {
+            Done = true;
+            _verticalRetrace.Set();
+        }
     }
 }

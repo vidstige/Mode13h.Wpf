@@ -21,6 +21,7 @@ namespace Mode13h.Wpf
             DataContext = _viewModel;
 
             _demoThread = new Thread(RunDemo);
+            _demoThread.IsBackground = false;
             _demoThread.Name = "Demo Runner";
 
             _timer.Interval = TimeSpan.FromMilliseconds(40);
@@ -42,9 +43,11 @@ namespace Mode13h.Wpf
             _demoThread.Start();
             _timer.Start();
         }
-
-        private void Window_Unloaded_1(object sender, RoutedEventArgs e)
+        
+        private void Window_Closed_1(object sender, EventArgs e)
         {
+            _viewModel.Quit();
+            //_demoThread.Join();
             _timer.Stop();
         }
     }

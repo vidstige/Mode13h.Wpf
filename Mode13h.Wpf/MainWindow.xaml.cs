@@ -30,7 +30,8 @@ namespace Mode13h.Wpf
 
         private void RunDemo(object state)
         {
-            new Demos.RotoZoomer(_viewModel).Run();
+            //new Demos.RotoZoomer(_viewModel).Run();
+            new Demos.Plasma(_viewModel).Run();
         }
 
         private void _timer_Tick(object sender, System.EventArgs e)

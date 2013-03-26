@@ -48,7 +48,6 @@ namespace Mode13h.Wpf
         private void Window_Closed_1(object sender, EventArgs e)
         {
             _viewModel.Quit();
-            //_demoThread.Join();
             _timer.Stop();
         }
     }

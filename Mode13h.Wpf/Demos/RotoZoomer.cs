@@ -37,7 +37,7 @@ namespace Mode13h.Wpf.Demos
                         _grfx.Screen[c++] = _img[px + py * _stride];
                     }
                 }
-                _grfx.vretrace();
+                _grfx.VRetrace();
 
                 _a = Math.Cos(t/100.0) * Math.Sin(t/130.0) * 2 * Math.PI;
                 _s = Math.Sin(t/20.0) / 2.0 + 1.4;

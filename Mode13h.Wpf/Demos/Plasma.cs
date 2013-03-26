@@ -33,7 +33,7 @@ namespace Mode13h.Wpf.Demos
                         _grfx.Screen[count++] = (byte)((a+b+c+3) * 42);
                     }
                 }
-                _grfx.vretrace();
+                _grfx.VRetrace();
 
                 t += 0.1;
             }

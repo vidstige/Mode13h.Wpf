@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
@@ -9,12 +8,12 @@ namespace Mode13h.Wpf
 {
     class MainViewModel: IGrfx
     {
-        private byte[] _screen = new byte[320 * 200];
+        private readonly byte[] _screen = new byte[320 * 200];
         private readonly WriteableBitmap _screenBitmap;
         private readonly BitmapPalette _palette = BitmapPalettes.Gray256;
-        private static Int32Rect _rect = new Int32Rect(0, 0, 320, 200);
+        private static readonly Int32Rect _rect = new Int32Rect(0, 0, 320, 200);
 
-        private AutoResetEvent _verticalRetrace = new AutoResetEvent(false);
+        private readonly AutoResetEvent _verticalRetrace = new AutoResetEvent(false);
 
         public MainViewModel()
         {
@@ -31,7 +30,7 @@ namespace Mode13h.Wpf
 
         public byte[] Screen { get { return _screen; } }
 
-        public void vretrace()
+        public void VRetrace()
         {
             _verticalRetrace.WaitOne();
         }

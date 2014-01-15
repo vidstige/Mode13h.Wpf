@@ -8,16 +8,16 @@ namespace Mode13h.Wpf
 {
     class MainViewModel: IGrfx
     {
-        private readonly byte[] _screen = new byte[320 * 200];
+        private readonly byte[] _screen = new byte[320 * 240];
         private readonly WriteableBitmap _screenBitmap;
         private readonly BitmapPalette _palette = BitmapPalettes.Gray256;
-        private static readonly Int32Rect _rect = new Int32Rect(0, 0, 320, 200);
+        private static readonly Int32Rect _rect = new Int32Rect(0, 0, 320, 240);
 
         private readonly AutoResetEvent _verticalRetrace = new AutoResetEvent(false);
 
         public MainViewModel()
         {
-            _screenBitmap = new WriteableBitmap(320, 200, 96, 96, PixelFormats.Indexed8, _palette);
+            _screenBitmap = new WriteableBitmap(320, 240, 96, 96, PixelFormats.Indexed8, _palette);
         }
 
         public WriteableBitmap ScreenBitmap { get { return _screenBitmap; } }
